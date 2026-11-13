@@ -1,0 +1,31 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+    <div class="p-5 mb-4 bg-white rounded-3 shadow-sm">
+        <h1 class="display-5 fw-bold">Welcome to our website!</h1>
+        <p class="fs-5 text-muted">This is the main page of the website.</p>
+        <button class="btn btn-primary">Learn More</button>
+    </div>
+
+    <h2 class="mb-4">Our Cards</h2>
+    <div class="row g-4">
+        {% for item in data %}
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="{% static 'main/images/' %}{{ item.image }}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.card_title }}</h5>
+                        <p class="card-text text-muted">{{ item.description }}</p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <p class="alert alert-warning">Cards not found</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
